@@ -6,15 +6,15 @@ import org.springframework.stereotype.Service;
 public class NovaService {
 
 	public String welcome() {
-		return "Olá, eu sou a NOVA. Pode me fazer uma pergunta.";
+		return "Ola, eu sou a NOVA. Pode me fazer uma pergunta.";
 	}
 
 	public String replyTo(String message) {
 		if (message == null || message.isBlank()) {
-			return "Não consegui entender sua pergunta. Pode repetir?";
+			return "Nao consegui entender sua pergunta. Pode repetir?";
 		}
 
-		return "Você perguntou: " + message + ". Em breve vou responder usando inteligência artificial.";
+		return "Voce perguntou: " + message + ". Em breve vou responder usando inteligencia artificial.";
 	}
 
 	public String fallback() {

@@ -50,7 +50,12 @@ public class AlexaController {
 		}
 
 		if ("SessionEndedRequest".equals(requestType)) {
-			return alexaResponse("", true);
+			return Map.of(
+				"version", "1.0",
+				"response", Map.of(
+					"shouldEndSession", true
+				)
+			);
 		}
 
 		return alexaResponse(novaService.fallback(), false);
@@ -64,12 +69,6 @@ public class AlexaController {
 				"outputSpeech", Map.of(
 					"type", "PlainText",
 					"text", text
-				),
-				"reprompt", Map.of(
-					"outputSpeech", Map.of(
-						"type", "PlainText",
-						"text", "Pode me fazer uma pergunta."
-					)
 				),
 				"shouldEndSession", shouldEndSession
 			)
