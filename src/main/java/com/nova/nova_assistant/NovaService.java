@@ -17,6 +17,14 @@ public class NovaService {
 		return "Voce perguntou: " + message + ". Em breve vou responder usando inteligencia artificial.";
 	}
 
+	public String help() {
+		return "Voce pode me fazer uma pergunta dizendo, pergunte, seguido do assunto.";
+	}
+
+	public String goodbye() {
+		return "Ate logo.";
+	}
+
 	public String fallback() {
 		return "Ainda estou aprendendo a lidar com esse tipo de pedido.";
 	}
