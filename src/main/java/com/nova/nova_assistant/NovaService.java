@@ -1,9 +1,16 @@
 package com.nova.nova_assistant;
 
+import com.nova.nova_assistant.agent.AgentRouter;
 import org.springframework.stereotype.Service;
 
 @Service
 public class NovaService {
+
+	private final AgentRouter agentRouter;
+
+	public NovaService(AgentRouter agentRouter) {
+		this.agentRouter = agentRouter;
+	}
 
 	public String welcome() {
 		return "Ola, eu sou a NOVA. Pode me fazer uma pergunta.";
@@ -14,7 +21,7 @@ public class NovaService {
 			return "Nao consegui entender sua pergunta. Pode repetir?";
 		}
 
-		return "Voce perguntou: " + message + ". Em breve vou responder usando inteligencia artificial.";
+		return agentRouter.route(message).respond(message);
 	}
 
 	public String help() {
