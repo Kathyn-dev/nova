@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: nova-assistant
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
