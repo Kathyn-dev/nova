@@ -40,6 +40,7 @@ public class OpenAiUsageLimiter {
 			requestCount.set(0);
 		}
 
+		// This in-memory guard limits accidental spend; account-level API budgets remain the hard limit.
 		if (requestCount.incrementAndGet() > maxRequests) {
 			requestCount.decrementAndGet();
 			throw new OpenAiUsageLimitException("OpenAI request limit reached for current window");

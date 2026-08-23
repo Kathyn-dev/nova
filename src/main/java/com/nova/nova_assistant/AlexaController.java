@@ -35,6 +35,7 @@ public class AlexaController {
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, Object>> handleAlexaRequest(@RequestBody JsonNode requestBody) {
+		// Reject requests from other skills when the expected Alexa application id is configured.
 		if (!isExpectedSkill(requestBody)) {
 			log.warn("Rejected Alexa request with unexpected application id");
 			return ResponseEntity.status(403).body(alexaResponseFactory.end("Requisicao nao autorizada."));
@@ -52,6 +53,7 @@ public class AlexaController {
 			log.info("Alexa intent received: name={}", intentName);
 
 			if ("ChatIntent".equals(intentName)) {
+				// The user message is intentionally not logged to avoid storing private speech content.
 				String message = requestBody.path("request")
 					.path("intent")
 					.path("slots")

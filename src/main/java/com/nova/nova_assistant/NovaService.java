@@ -21,6 +21,7 @@ public class NovaService {
 			return "Nao consegui entender sua pergunta. Pode repetir?";
 		}
 
+		// All conversational behavior goes through the router so specialized agents can be added later.
 		return agentRouter.route(message).respond(message);
 	}
 

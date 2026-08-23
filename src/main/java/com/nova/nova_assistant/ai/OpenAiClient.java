@@ -62,6 +62,7 @@ public class OpenAiClient implements AiClient {
 		}
 		usageLimiter.checkAndConsume();
 
+		// Keep responses short and non-persistent because Alexa output should be concise and low-cost.
 		Map<String, Object> body = Map.of(
 			"model", model,
 			"store", false,

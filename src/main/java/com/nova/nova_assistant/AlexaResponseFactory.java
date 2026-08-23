@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class AlexaResponseFactory {
 
+	/**
+	 * Builds the minimal response shape expected by Alexa for spoken custom skill replies.
+	 */
 	public Map<String, Object> say(String text) {
 		return response(text, false);
 	}

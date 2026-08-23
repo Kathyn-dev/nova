@@ -14,6 +14,7 @@ public class AgentRouter {
 	}
 
 	public NovaAgent route(String message) {
+		// Spring injects agents in @Order priority, allowing specialized agents to win over DefaultAgent.
 		return agents.stream()
 			.filter(agent -> agent.supports(message))
 			.findFirst()
