@@ -1,6 +1,7 @@
 package com.nova.nova_assistant.agent;
 
 import com.nova.nova_assistant.ai.OpenAiClient;
+import com.nova.nova_assistant.ai.OpenAiUsageLimitException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -27,6 +28,10 @@ public class OpenAiAgent implements NovaAgent {
 	public String respond(String message) {
 		try {
 			return openAiClient.answer(message);
+		}
+		catch (OpenAiUsageLimitException exception) {
+			log.warn("OpenAI usage limit blocked request: {}", exception.getMessage());
+			return "Atingi meu limite de uso da inteligencia artificial por agora. Podemos tentar novamente mais tarde.";
 		}
 		catch (RuntimeException exception) {
 			log.warn("OpenAI request failed: {} - {}", exception.getClass().getSimpleName(), exception.getMessage());
