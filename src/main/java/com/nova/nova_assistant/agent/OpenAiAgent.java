@@ -29,7 +29,7 @@ public class OpenAiAgent implements NovaAgent {
 			return openAiClient.answer(message);
 		}
 		catch (RuntimeException exception) {
-			log.warn("OpenAI request failed: {}", exception.getClass().getSimpleName());
+			log.warn("OpenAI request failed: {} - {}", exception.getClass().getSimpleName(), exception.getMessage());
 			return "Tive um problema para consultar a inteligencia artificial agora. Pode tentar de novo em alguns instantes?";
 		}
 	}
